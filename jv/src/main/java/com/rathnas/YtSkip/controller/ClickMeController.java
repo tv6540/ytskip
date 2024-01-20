@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,8 +27,14 @@ public class ClickMeController {
                 robot.mouseMove(x, y);
                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+                Thread.sleep(500);
+                robot.keyPress(KeyEvent.VK_SPACE);
+                robot.keyRelease(KeyEvent.VK_SPACE);
+                Thread.sleep(500);
+                robot.keyPress(KeyEvent.VK_F);
+                robot.keyRelease(KeyEvent.VK_F);
                 return 0;
-            } catch (AWTException e) {
+            } catch (AWTException | InterruptedException e) {
                 log.error("Exception while executing command: " + e.getMessage(), e);
             }
         }
