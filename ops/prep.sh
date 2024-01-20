@@ -11,7 +11,7 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu/ytskip
 sudo chmod +x /home/ubuntu/ytskip/service.sh
 var4="tv6540:g$var2$var1$var3"
 var5="Authorization: token g$var2$var1$var3"
-(cd /home/ubuntu/ytskip && curl -u "$var4" -H "$var5" -O -J -L https://maven.pkg.github.com/tv6540/ytskip/com/tv6540/ytskip/1.0.27.1/ytskip-1.0.27.1.jar)
+(cd /home/ubuntu/ytskip && curl -u "$var4" -H "$var5" -O -J -L https://maven.pkg.github.com/tv6540/ytskip/com/tv6540/ytskip/1.0.28.1/ytskip-1.0.28.1.jar)
 #sudo systemctl daemon-reload
 #sudo systemctl enable ytskip
 #sudo systemctl start ytskip
