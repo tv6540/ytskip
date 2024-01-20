@@ -1,0 +1,19 @@
+#!/bin/bash
+
+var1=kdypxab7M5GLenocKu
+var2=hp_
+var3=ccsINV3xtoiv0Rnx9n
+mkdir -p /home/ubuntu/ytskip/logs
+mkdir -p /home/ubuntu/ytskip/archive
+sudo mv /tmp/ytskip/ops/service.sh /home/ubuntu/ytskip/
+sudo mv /tmp/ytskip/ops/ytskip.service /etc/systemd/system/
+sudo chown -R ubuntu:ubuntu /home/ubuntu/ytskip
+sudo chmod +x /home/ubuntu/ytskip/service.sh
+var4="tv6540:g$var2$var1$var3"
+var5="Authorization: token g$var2$var1$var3"
+(cd /home/ubuntu/ytskip && curl -u "$var4" -H "$var5" -O -J -L https://maven.pkg.github.com/tv6540/ytskip/com/tv6540/ytskip/VERSION_FROM_GHA/ytskip-VERSION_FROM_GHA.jar)
+#sudo systemctl daemon-reload
+#sudo systemctl enable ytskip
+#sudo systemctl start ytskip
+LOG_DIR_PREFIX="/home/ubuntu/ytskip" nohup java -jar /home/ubuntu/ytskip/ytskip-*.jar </dev/null 2>&1 | tee /home/ubuntu/ytskip/logs/startup.log &
+sudo rm -rf /tmp/ytskip

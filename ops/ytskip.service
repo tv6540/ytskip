@@ -1,0 +1,11 @@
+[Unit]
+Description=YtSkip Service
+
+[Service]
+Type=simple
+ExecStart=/home/ubuntu/ytskip/service.sh
+User=ubuntu
+Group=ubuntu
+
+[Install]
+WantedBy=multi-user.target
