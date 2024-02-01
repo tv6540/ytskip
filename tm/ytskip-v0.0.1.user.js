@@ -50,6 +50,7 @@
   const interval = setInterval(async () => {
     const slotElem = document.querySelector(".ytp-ad-skip-button-slot")
     const containerElem = document.querySelector(".ytp-ad-skip-button-container")
+    const skipAdBtn = document.querySelector(".ytp-skip-ad-button")
     if (containerElem) {
       if (!containerElem.style.display || containerElem.style.display !== 'none') {
         const skipBtn = containerElem.querySelector('button')
@@ -78,7 +79,20 @@
       } else {
         console.debug(`no containerElem style, ${interval}`)
       }
-    } else {
+    } else if (skipAdBtn) {
+          const skipReady = document.querySelector(".ytp-preview-ad")?.style?.display === 'none'
+          if(skipReady) {
+              const bounds = skipAdBtn.getBoundingClientRect()
+              const x = Math.round(winX + bounds.x + (skipAdBtn.offsetWidth / 2))
+              const y = Math.round(winY + bounds.y + (skipAdBtn.offsetHeight / 2))
+              const rspTxt = await api('GET', `http://localhost:8080/ytskip/click/${x}/${y}`, null, {
+                  "Content-Type": "application/json"
+              })
+              console.log(`clicking skipAdBtn, ${interval} @ ${x}, ${y} => ${rspTxt}`)
+          } else {
+              console.debug(`not ready skipAdBtn, ${interval} @ ${x}, ${y} => ${rspTxt}`)
+          }
+      } else {
       console.debug(`no slotElem, ${interval}`)
     }
   }, 1000)
